@@ -3,19 +3,19 @@ package com.br.VO.converter;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.Before;
+import org.junit.Test;
 
-import com.br.VO.converterTest.mocks.MockPerson;
+import com.br.VO.converter.mocks.MockPerson;
 import com.br.VO.data.model.Person;
 import com.br.VO.data.vo.PersonVO;
 
-@SpringBootTest
+
 public class DozerConverterTests {
 
 	MockPerson inputObject;
 
-
+	@Before
 	public void setUp() {
 		inputObject = new MockPerson();
 	}
@@ -32,7 +32,7 @@ public class DozerConverterTests {
 
 	@Test
 	public void parseEntityListToVOListTest() {
-		List<PersonVO> outputList = DozerConverter.parseObjects(inputObject.mockEntityList(), PersonVO.class);
+		List<PersonVO> outputList = DozerConverter.parseListObjects(inputObject.mockEntityList(), PersonVO.class);
 		PersonVO outputZero = outputList.get(0);
 
 		Assert.assertEquals(Long.valueOf(0L), outputZero.getId());
@@ -70,7 +70,7 @@ public class DozerConverterTests {
 
 	@Test
 	public void parserVOListToEntityListTest() {
-		List<Person> outputList = DozerConverter.parseObjects(inputObject.mockVOList(), Person.class);
+		List<Person> outputList = DozerConverter.parseListObjects(inputObject.mockVOList(), Person.class);
 		Person outputZero = outputList.get(0);
 
 		Assert.assertEquals(Long.valueOf(0L), outputZero.getId());
